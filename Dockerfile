@@ -11,23 +11,22 @@ RUN docker-php-ext-install pdo pdo_mysql
 WORKDIR /var/www/html
 
 # Copiamos el código fuente de Laravel a la imagen
+#COPY applaravel /var/www/html/applaravel
 COPY . /var/www/html
 
 # Instalamos Composer globalmente
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Instalamos las dependencias de Composer
-RUN composer install
+# RUN composer install
 RUN chmod -R 777 storage
 
 # Copiamos el archivo de configuración .env
 COPY .env.example .env
+COPY .env /var/www/html/.env
 
 # Generamos la clave de la aplicación
 RUN php artisan key:generate
-RUN npm install && npm run dev
-# RUN php artisan migrate
-# RUN php artisan dbseed --class=DefaultUserSeeder
 
 # Exponemos el puerto 80 para que se pueda acceder al servidor web
 EXPOSE 80
