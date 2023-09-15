@@ -13,9 +13,9 @@ class DefaultUserSeeder extends Seeder
     {
         // Crear un usuario por defecto
         User::create([
-            'name' => 'Usuario por Defecto',
-            'email' => 'usuario@ejemplo.com',
-            'password' => Hash::make('contraseña'),
+            'name' => 'test',
+            'email' => 'test@test.com',
+            'password' => bcrypt('123456'),
         ]);
     }
 }
