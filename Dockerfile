@@ -28,6 +28,9 @@ COPY .env /var/www/html/.env
 # Generamos la clave de la aplicación
 RUN php artisan key:generate
 
+# Modificamos la ruta por defecto del index.php
+# RUN sed -i 's/\/var\/www\/html/\/var\/www\/html\/public/g' /etc/apache2/sites-enabled/000-default.conf
+
 # Exponemos el puerto 80 para que se pueda acceder al servidor web
 EXPOSE 80
 
