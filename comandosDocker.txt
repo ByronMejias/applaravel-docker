@@ -1,0 +1,24 @@
+# PARA CREAR LA IMAGEN CON MI PROYECTO
+docker build -t applaravel .
+# PARA CREAR EL CONTENEDOR DE MI PROYECTO APPLARAVEL
+docker run -d -p 8081:80 applaravel
+# PARA CREAR EL CONTENEDOR DE MI PROYECTO APPLARAVEL CON UN ALIAS
+docker run --name applaravel-test -d -p 8081:80 applaravel
+# PARA CREAR EL CONTENEDOR DE MI PROYECTO APPLARAVEL CON UNA RED
+docker run --network mired -d -p 8081:80 applaravel
+# PARA CREAR EL CONTENEDOR DE MI PROYECTO APPLARAVEL CON UN ALIAS Y UNA RED
+docker run --name applaravel-test --network mired -d -p 8081:80 applaravel
+# PARA crear un contenedor MYSQL
+docker run --name mi-mysql-container -e MYSQL_ROOT_PASSWORD='12345678*' -d -p 3307:3306 mysql:5.7
+# PARA crear un contenedor MYSQL con una red
+docker run --name mi-mysql-container --network mired -e MYSQL_ROOT_PASSWORD='12345678*' -d -p 3307:3306 mysql:5.7
+# PARA CREAR UNA RED
+docker network create mired
+# PARA CONECTAR A UNA RED OTRO CONTENEDOR
+docker network connect NOMBRE_CONTENEDOR
+# PARA INSPECCIONAR UNA RED
+docker network inspect mired
+
+# MIGRACIONES
+php artisan migrate
+php artisan db:seed --class=DefaultUserSeeder
