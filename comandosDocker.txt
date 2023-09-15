@@ -28,6 +28,8 @@ docker network connect NOMBRE_CONTENEDOR
 # PARA INSPECCIONAR UNA RED
 docker network inspect mired
 
+# enciende los containers y la red
+docker-compose up -d
 
 # MIGRACIONES
 php artisan migrate
